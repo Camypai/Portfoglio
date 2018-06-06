@@ -18,7 +18,7 @@
     </environment>
 </head>
 <body>
-<nav class="uk-navbar-container uk-margin" uk-navbar>
+<nav class="uk-navbar-container uk-margin" uk-navbar uk-sticky>
     <div class="uk-navbar-center">
 
         <div class="uk-navbar-center-left">
@@ -32,7 +32,7 @@
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
                                 <li>
-                                    <a href="https://art.ilya-gorshkov.ru/">Art</a>
+                                    <a asp-area="" asp-controller="Art" asp-action="Index">Art</a>
                                 </li>
                                 <li>
                                     <a href="https://tasker.ilya-gorshkov.ru/">Tasker</a>
@@ -78,22 +78,23 @@
 @*     </div> *@
 @* </nav> *@
 <div>
-    <section class="uk-section uk-section-default" uk-height-viewport="expand:true">
-        <div class="uk-container">
-            <div uk-grid>
+    @* <section class="uk-section uk-section-default" uk-height-viewport="expand:true"> *@
+        @* <div class="uk-container"> *@
+           
 
                 @RenderBody()
-            </div>
-        </div>
-    </section>
+            
+        @* </div> *@
+    @* </section> *@
     <footer id="footer" class="uk-section uk-section-xsmall">
-        <div class="uk-container uk-container-small">&copy; 2018 - Portfoglio</div>
+        <div class="uk-container uk-container-small">&copy; 2018 - Portfoglio by Ilya Gorshkov @ViewData["Footer"]</div>
     </footer>
 </div>
 
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/uikit.js"></script>
+    <script src="~/js/uikit-icons.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment exclude="Development">

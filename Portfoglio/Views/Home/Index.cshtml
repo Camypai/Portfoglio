@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-
+<section class="uk-section uk-section-default" uk-height-viewport="expand:true">
 <div class="uk-flex uk-flex-center">
     <div class="uk-card uk-card-hover uk-card-default uk-width-1-2@m">
         <div class="uk-card-header">
@@ -19,7 +19,7 @@
             <p>Photo album of the artist's paintings, where you can see his work and contact to order, you can also learn more about the author of the works</p>
         </div>
         <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Read more</a>
+            <a  asp-area="" asp-controller="Art" asp-action="Index" class="uk-button uk-button-text">Read more</a>
         </div>
     </div>
     
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-
+</section>
