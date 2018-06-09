@@ -12,7 +12,8 @@
     "outputFileName": "wwwroot/js/uikit.min.js",
     "inputFiles": [
       "wwwroot/js/uikit.js",
-      "wwwroot/js/uikit-icons.js"
+      "wwwroot/js/uikit-icons.js",
+      "wwwroot/js/site.js"
     ],
     // Optionally specify minification options
     "minify": {
