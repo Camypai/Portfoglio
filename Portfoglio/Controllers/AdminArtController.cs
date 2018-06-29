@@ -5,14 +5,14 @@ namespace Portfoglio.Controllers
 {
     public class AdminArtController : Controller
     {
-        private IRepository<Album> dbAlbum = new SqlAlbumRepository();
+        private readonly IRepository<Album> dbAlbum = new SqlAlbumRepository();
         private IRepository<Picture> dbPicture = new SqlPictureRepository();
         
         // GET
         public IActionResult Index()
         {
-            return
-            View();
+            var album = dbAlbum.GetList();
+            return View(album);
         }
     }
 }
