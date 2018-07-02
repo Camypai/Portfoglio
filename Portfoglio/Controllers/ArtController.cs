@@ -10,7 +10,12 @@ namespace Portfoglio.Controllers
 {
     public class ArtController : Controller
     {
-        private IRepository<Album> albumFromDB = new SqlAlbumRepository();
+        private IRepository<Album> albumFromDB;
+
+        public ArtController(Context context)
+        {
+            albumFromDB = new SqlAlbumRepository(context);
+        }
         
         public IActionResult Index()
         {

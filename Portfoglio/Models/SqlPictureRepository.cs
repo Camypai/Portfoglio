@@ -8,9 +8,9 @@ namespace Portfoglio.Models
     {
         private readonly Context db;
 
-        public SqlPictureRepository()
+        public SqlPictureRepository(Context context)
         {
-            db = new Context();
+            db = context;
         }
         
         public IEnumerable<Picture> GetList()

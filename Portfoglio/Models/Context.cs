@@ -8,14 +8,14 @@ namespace Portfoglio.Models
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public Context()
+        public Context(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=artdb;Trusted_Connection=True;");
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            optionsBuilder.UseSqlServer("Server=(localdb)\\artdb;Database=artdb;Trusted_Connection=True;");
+//        }
     }
 }
