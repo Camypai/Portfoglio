@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Portfoglio.Models
 {
@@ -15,5 +16,6 @@ namespace Portfoglio.Models
         void Delete(int id);
         void Delete(T item);
         void Save();
+        Task SaveAsync();
     }
 }

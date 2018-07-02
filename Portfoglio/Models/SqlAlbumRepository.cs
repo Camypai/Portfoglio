@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Portfoglio.Models
@@ -61,6 +62,11 @@ namespace Portfoglio.Models
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await db.SaveChangesAsync();
         }
     }
 }

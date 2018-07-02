@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Album>
+
+<div uk-grid>
+    @if (Model.Any())
+    {
+        foreach (var album in Model)
+        {
+            <div>
+                <h3>@album.Name</h3>
+                <p>@album.Description</p>
+            </div>
+        }
+    }
+    else
+    {
+        <div>
+            <p>Albums is empty</p>
+        </div>
+    }
+</div>

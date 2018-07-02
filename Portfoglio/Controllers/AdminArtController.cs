@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Portfoglio.Models;
 
 namespace Portfoglio.Controllers
@@ -17,8 +18,20 @@ namespace Portfoglio.Controllers
         // GET
         public IActionResult Index()
         {
-            var album = dbAlbum.GetList();
-            return View(album);
+            return View();
+        }
+
+        public IActionResult _CreateAlbum()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAlbum(Album album)
+        {
+            dbAlbum.Create(album);
+            await dbAlbum.SaveAsync();
+            return RedirectToAction("Index");
         }
     }
 }
