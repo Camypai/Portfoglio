@@ -1,11 +1,13 @@
-﻿@{
+﻿@model IEnumerable<Album>
+
+@{
     ViewData["Title"] = "Art";
     ViewData["Footer"] = "| Pictures by Ksenia Kallagova";
 }
 
-<section class="uk-section uk-section-default uk-padding-remove-vertical" >
+<section class="uk-section uk-section-default uk-padding-remove-vertical">
     <div uk-grid>
-        <div class="uk-width-1-3@m uk-background-muted uk-flex uk-flex-column" >
+        <div class="uk-width-1-3@m uk-background-muted uk-flex uk-flex-column">
             <ul class="uk-nav uk-nav-primary uk-nav-center " uk-sticky>
                 <li class="uk-active">
                     <a href="#"><span class="uk-margin-small-right" uk-icon="icon: paint-bucket"></span> My works</a>
@@ -23,253 +25,42 @@
             </ul>
         </div>
         <div class="uk-width-expand" uk-grid>
-            @* <div uk-grid> *@
-            <div class="uk-card uk-card-small uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items" uk-lightbox>
-                        <li>
-                            <a href="~/images/1_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                @* <a href="~/images/1_1.jpg"> *@
-                                    
-                                <img src="~/images/1_1.jpg" alt="" uk-cover/>
-                                @* </a> *@
-                            </a>
-                        </li>
-                        <li>
-                            <a href="~/images/1_2.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
-                                @* <a href="~/images/1_2.jpg"> *@
-                                    
-                                <img src="~/images/1_2.jpg" alt="" uk-cover/>
-                                @* </a> *@
-                            </a>
-                        </li>
-                        <li>
-                            <a href="~/images/1_3.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                @* <a href="~/images/1_3.jpg"> *@
-                                    
-                                <img src="~/images/1_3.jpg" alt="" uk-cover/>
-                                @* </a> *@
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            @* <div class="uk-card uk-card-small uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true"> *@
+            @*     <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1"> *@
+            @*         <ul class="uk-slideshow-items" uk-lightbox> *@
+            @*             <li> *@
+            @*                 <a href="~/images/1_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right"> *@
+            @*                     $1$ <a href="~/images/1_1.jpg"> #1# *@
+            @* *@
+            @*                     <img src="~/images/1_1.jpg" alt="" uk-cover/> *@
+            @*                     $1$ </a> #1# *@
+            @*                 </a> *@
+            @*             </li> *@
+            @*             <li> *@
+            @*                 <a href="~/images/1_2.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"> *@
+            @*                     $1$ <a href="~/images/1_2.jpg"> #1# *@
+            @* *@
+            @*                     <img src="~/images/1_2.jpg" alt="" uk-cover/> *@
+            @*                     $1$ </a> #1# *@
+            @*                 </a> *@
+            @*             </li> *@
+            @*             <li> *@
+            @*                 <a href="~/images/1_3.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right"> *@
+            @*                     $1$ <a href="~/images/1_3.jpg"> #1# *@
+            @* *@
+            @*                     <img src="~/images/1_3.jpg" alt="" uk-cover/> *@
+            @*                     $1$ </a> #1# *@
+            @*                 </a> *@
+            @*             </li> *@
+            @*         </ul> *@
+            @*     </div> *@
+            @* </div> *@
 
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items" uk-lightbox>
-                        <li>
-                            <a href="~/images/2_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/2_1.jpg" alt="" uk-cover/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items" uk-lightbox>
-                        <li>
-                            <a href="~/images/3_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items" uk-lightbox>
-                        <li>
-                            <a href="~/images/4_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items" uk-lightbox>
-                        <li>
-                            <a href="~/images/5_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            @foreach (var album in Model)
+            {
+                @await Html.PartialAsync("ShowAlbum", album)
+            }
 
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-                <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                    <ul class="uk-slideshow-items">
-                        <li>
-                            <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                                <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-        <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-            <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                            <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
-        <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-            <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                            <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-            <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                            <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-            <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                            <img src="~/images/3_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="uk-card  uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true; uk-animation-kenburns">
-            <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items">
-                    <li>
-                        <div class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right">
-                            <img src="~/images/4_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="uk-card  uk-width-1-4@m " >
-            <div class="uk-position-relative uk-visible-toggle"  uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
-                <ul class="uk-slideshow-items uk-overflow-hidden">
-                    <li>
-                        <div class="uk-position-cover uk-animation-reverse uk-transform-origin-center-right" uk-scrollspy="cls: uk-animation-kenburns; repeat: true">
-                            <img src="~/images/5_1.jpg" alt="" uk-cover/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        </div>
-        @* </div> *@
     </div>
 </section>

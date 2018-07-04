@@ -10,7 +10,7 @@ namespace Portfoglio.Models
 
         public Context(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+//            Database.Migrate();
         }
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

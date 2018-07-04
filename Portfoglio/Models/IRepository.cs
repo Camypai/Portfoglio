@@ -8,8 +8,9 @@ namespace Portfoglio.Models
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetList();
-        T GetItem(int id);
+        Task<T> GetItem(int id);
         void Create(T item);
+        void Create(List<T> items);
         void Update(T item);
         void Hide(int id);
         void Hide(T item);

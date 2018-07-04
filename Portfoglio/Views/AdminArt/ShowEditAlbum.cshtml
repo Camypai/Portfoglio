@@ -1,0 +1,67 @@
+﻿@model Album
+@{
+    ViewBag.Title = "Administration panel";
+    Layout = "_Layout";
+}
+<div>
+    <div>
+        <form id="EditAlbum" asp-action="EditAlbum" asp-controller="AdminArt">
+            <input type="hidden" asp-for="Id" value="@Model.Id"/>
+            <div class="uk-margin">
+                <input type="text" class="uk-input" asp-for="Name" placeholder="Name" value="@Model.Name"/>
+            </div>
+            <div class="uk-margin">
+                <input type="text" class="uk-input" asp-for="Description" placeholder="Description" value="@Model.Description"/>
+            </div>
+            <div class="uk-margin">
+                @if (Model.State)
+                {
+                    <label><input class="uk-checkbox" type="checkbox" asp-for="State" checked> Visible</label>
+                }
+                else
+                {
+                    <label><input class="uk-checkbox" type="checkbox" asp-for="State"> Visible</label>
+                }
+            </div>
+        </form>
+    </div>
+    <div class="uk-margin" uk-grid>
+        @if (Model.Pictures != null && Model.Pictures.Any())
+        {
+            foreach (var picture in Model.Pictures)
+            {
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-width-1-6@m">
+                        <div class="uk-card-media-top">
+                            <img src="@picture.Path" alt="@picture.Name"/>
+                        </div>
+                        <div class="uk-card-footer uk-text-center">
+                            <ul class="uk-iconnav">
+                                @* <li><a href="#" uk-icon="icon: plus" uk-tooltip="title: Hello World; delay: 500"></a></li> *@
+                                @* <li><a href="#" uk-icon="icon: file-edit" uk-tooltip="title: Edit; delay: 500"></a></li> *@
+                                <li><a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Hide" uk-icon="icon: ban" uk-tooltip="title: Hide; delay: 500"></a></li>
+                                <li><a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Delete" uk-icon="icon: trash" uk-tooltip="title: Delete; delay: 500"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="uk-margin">
+        <div class="uk-text-left">
+            <form asp-action="AddPictures" asp-controller="AdminArt" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <div uk-form-custom>
+                    <input type="file" name="pictures" multiple>
+                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Select pictures</button>
+                </div>
+                <input class="uk-button uk-button-primary" type="submit" value="Upload"/>
+            </form>
+        </div>
+        <div class="uk-text-right">
+            <a asp-action="Index" asp-controller="AdminArt" class="uk-button uk-button-default">Cancel</a>
+            <input form="EditAlbum" class="uk-button uk-button-primary" type="submit" value="Save"/>
+        </div>
+    </div>
+</div>

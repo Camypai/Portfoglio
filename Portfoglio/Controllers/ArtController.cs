@@ -19,7 +19,8 @@ namespace Portfoglio.Controllers
         
         public IActionResult Index()
         {
-            return View();
+            var albums = albumFromDB.GetList().Where(a => a.State);
+            return View(albums);
         }
 //
 //        public IActionResult About()

@@ -16,17 +16,22 @@ namespace Portfoglio.Models
 
         public IEnumerable<Album> GetList()
         {
-            return db.Albums;
+            return db.Albums.Include(p => p.Pictures);
         }
 
-        public Album GetItem(int id)
+        public async Task<Album> GetItem(int id)
         {
-            return db.Albums.Find(id);
+            return await db.Albums.Include(p => p.Pictures).FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public void Create(Album item)
+        public async void Create(Album item)
         {
-            db.Albums.Add(item);
+            await db.Albums.AddAsync(item);
+        }
+
+        public async void Create(List<Album> items)
+        {
+            await db.Albums.AddRangeAsync(items);
         }
 
         public void Update(Album item)
@@ -37,13 +42,13 @@ namespace Portfoglio.Models
         public void Hide(int id)
         {
             var item = db.Albums.Find(id);
-            item.State = false;
+            item.State = !item.State;
             Update(item);
         }
 
         public void Hide(Album item)
         {
-            item.State = false;
+            item.State = !item.State;
             Update(item);
         }
         
