@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Portfoglio.Models
@@ -14,6 +12,8 @@ namespace Portfoglio.Models
         void Update(T item);
         void Hide(int id);
         void Hide(T item);
+        void Show(int id);
+        void Show(T item);
         void Delete(int id);
         void Delete(T item);
         void Save();

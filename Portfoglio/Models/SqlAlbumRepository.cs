@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,11 +25,16 @@ namespace Portfoglio.Models
 
         public async void Create(Album item)
         {
+            item.State = true;
             await db.Albums.AddAsync(item);
         }
 
         public async void Create(List<Album> items)
         {
+            foreach (var album in items)
+            {
+                album.State = true;
+            }
             await db.Albums.AddRangeAsync(items);
         }
 
@@ -51,7 +55,20 @@ namespace Portfoglio.Models
             item.State = !item.State;
             Update(item);
         }
-        
+
+        public void Show(int id)
+        {
+            var item = db.Albums.Find(id);
+            item.State = true;
+            Update(item);
+        }
+
+        public void Show(Album item)
+        {
+            item.State = true;
+            Update(item);
+        }
+
         public void Delete(int id)
         {
             var item = db.Albums.Find(id);

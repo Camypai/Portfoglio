@@ -4,6 +4,7 @@
     {
         Edit = 1,
         Hide = 2,
-        Delete = 3
+        Show = 3,
+        Delete = 0
     }
 }

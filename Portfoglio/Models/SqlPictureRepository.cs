@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +20,7 @@ namespace Portfoglio.Models
 
         public async Task<Picture> GetItem(int id)
         {
-            return await db.Pictures.FindAsync(id);
+            return await db.Pictures.Include(a => a.Album).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async void Create(Picture item)
@@ -42,13 +41,26 @@ namespace Portfoglio.Models
         public void Hide(int id)
         {
             var item = db.Pictures.Find(id);
-            item.State = !item.State;
+            item.State = false;
             Update(item);
         }
 
         public void Hide(Picture item)
         {
-            item.State = !item.State;
+            item.State = false;
+            Update(item);
+        }
+
+        public void Show(int id)
+        {
+            var item = db.Pictures.Find(id);
+            item.State = true;
+            Update(item);
+        }
+
+        public void Show(Picture item)
+        {
+            item.State = true;
             Update(item);
         }
 

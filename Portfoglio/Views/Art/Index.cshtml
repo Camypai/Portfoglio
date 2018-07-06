@@ -5,7 +5,7 @@
     ViewData["Footer"] = "| Pictures by Ksenia Kallagova";
 }
 
-<section class="uk-section uk-section-default uk-padding-remove-vertical">
+<section class="uk-section uk-section-default uk-padding-remove-vertical" uk-height-viewport="expand:true">
     <div uk-grid>
         <div class="uk-width-1-3@m uk-background-muted uk-flex uk-flex-column">
             <ul class="uk-nav uk-nav-primary uk-nav-center " uk-sticky>
@@ -25,42 +25,14 @@
             </ul>
         </div>
         <div class="uk-width-expand" uk-grid>
-            @* <div class="uk-card uk-card-small uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true"> *@
-            @*     <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1"> *@
-            @*         <ul class="uk-slideshow-items" uk-lightbox> *@
-            @*             <li> *@
-            @*                 <a href="~/images/1_1.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right"> *@
-            @*                     $1$ <a href="~/images/1_1.jpg"> #1# *@
-            @* *@
-            @*                     <img src="~/images/1_1.jpg" alt="" uk-cover/> *@
-            @*                     $1$ </a> #1# *@
-            @*                 </a> *@
-            @*             </li> *@
-            @*             <li> *@
-            @*                 <a href="~/images/1_2.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"> *@
-            @*                     $1$ <a href="~/images/1_2.jpg"> #1# *@
-            @* *@
-            @*                     <img src="~/images/1_2.jpg" alt="" uk-cover/> *@
-            @*                     $1$ </a> #1# *@
-            @*                 </a> *@
-            @*             </li> *@
-            @*             <li> *@
-            @*                 <a href="~/images/1_3.jpg" class="uk-position-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-right"> *@
-            @*                     $1$ <a href="~/images/1_3.jpg"> #1# *@
-            @* *@
-            @*                     <img src="~/images/1_3.jpg" alt="" uk-cover/> *@
-            @*                     $1$ </a> #1# *@
-            @*                 </a> *@
-            @*             </li> *@
-            @*         </ul> *@
-            @*     </div> *@
-            @* </div> *@
 
-            @foreach (var album in Model)
+            @if (Model.Any())
             {
-                @await Html.PartialAsync("ShowAlbum", album)
+                foreach (var album in Model)
+                {
+                    @await Html.PartialAsync("ShowAlbum", album)
+                }
             }
-
         </div>
     </div>
 </section>

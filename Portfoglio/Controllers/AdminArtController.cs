@@ -49,22 +49,28 @@ namespace Portfoglio.Controllers
         {
             var _album = await dbAlbum.GetItem(album.Id);
 
-            var pictures = (from picture in album.Pictures
-                let path = $"/images/{picture.FileName}"
-                select new Picture
-                {
-                    Album = _album,
-                    Name = picture.FileName,
-                    State = true,
-                    Path = path
-                }).ToList();
-
-            _album.Pictures = pictures;
-            _album.State = album.State;
+//            var pictures = (from picture in album.Pictures
+//                let path = $"/images/{picture.FileName}"
+//                select new Picture
+//                {
+//                    Album = _album,
+//                    Name = picture.FileName,
+//                    State = true,
+//                    Path = path
+//                }).ToList();
+//
+//            _album.Pictures = pictures;
+//            _album.State = album.State == null ? false : true;
             _album.Description = album.Description;
             _album.Name = album.Name;
 
             dbAlbum.Update(_album);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteAlbum(Album album)
+        {
+            dbAlbum.Delete(album);
             return RedirectToAction("Index");
         }
 
@@ -98,7 +104,7 @@ namespace Portfoglio.Controllers
             return RedirectToAction("ShowEditAlbum", _album);
         }
 
-        public async void EditPicture(int id, Method method)
+        public async Task<IActionResult> EditPicture(int id, Method method)
         {
             var picture = await dbPicture.GetItem(id);
 
@@ -112,11 +118,16 @@ namespace Portfoglio.Controllers
                 case Method.Delete:
                     dbPicture.Delete(picture);
                     break;
+                case Method.Show:
+                    dbPicture.Show(picture);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(method), method, null);
             }
 
             await dbPicture.SaveAsync();
+            
+            return RedirectToAction("ShowEditAlbum", picture.Album);
         }
     }
 }

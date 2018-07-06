@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Portfoglio.Models
 {
@@ -10,12 +12,10 @@ namespace Portfoglio.Models
 
         public Context(DbContextOptions options) : base(options)
         {
-//            Database.Migrate();
+            if (!((RelationalDatabaseCreator) Database.GetService<IDatabaseCreator>()).Exists())
+            {
+                Database.Migrate();
+            }
         }
-
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            optionsBuilder.UseSqlServer("Server=(localdb)\\artdb;Database=artdb;Trusted_Connection=True;");
-//        }
     }
 }
