@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,59 @@ namespace Portfoglio.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        
+        public IActionResult About()
+        {
+            const string path = @"./Views/Art/_About.cshtml";
+            var result = GetTextFromFile(path);
+            
+            return View(result);
+        }
+        
+        public IActionResult Pricelist()
+        {
+            const string path = @"./Views/Art/_Pricelist.cshtml";
+            var result = GetTextFromFile(path);
+            
+            return View(result);
+        }
+
+        private static HtmlTextModel GetTextFromFile(string path)
+        {
+            var result = new HtmlTextModel{View = string.Empty};
+            
+            using (var sr = new StreamReader(path))
+            {
+                result.View = sr.ReadToEnd();
+            }
+
+            return result;
+        }
+        
+        [HttpPost]
+        public async Task HtmlEdit(string data, string target)
+        {
+            string path;
+            
+            switch (target)
+            {
+                    case "pricelistEdit":
+                        path = @"./Views/Art/_Pricelist.cshtml";
+                        break;
+                    case "aboutEdit":
+                        path = @"./Views/Art/_About.cshtml";
+                        break;
+                    default:
+                        return;
+            }
+            
+            
+            using (var sw = new StreamWriter(path, false, Encoding.UTF8))
+            {
+                await sw.WriteAsync(data);
+            }
+            
         }
 
 
