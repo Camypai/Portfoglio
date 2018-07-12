@@ -1,0 +1,11 @@
+﻿@model HtmlTextModel
+
+@{
+    ViewBag.Title = "Edit page pricelist";
+    Layout = "_Layout";
+}
+
+<h2>Edit page 'Pricelist"</h2>
+<textarea id="pricelistEdit" name="editor1">@Model.View</textarea>
+<a asp-controller="AdminArt" asp-action="Index" class="uk-button uk-button-default">Back</a>
+
