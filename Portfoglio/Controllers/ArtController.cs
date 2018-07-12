@@ -34,13 +34,16 @@ namespace Portfoglio.Controllers
             
             return View(albums);
         }
-//
-//        public IActionResult About()
-//        {
-//            ViewData["Message"] = "Your application description page.";
-//
-//            return View();
-//        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+        
+        public IActionResult Pricelist()
+        {
+            return View();
+        }
 //
 //        public IActionResult Contact()
 //        {
