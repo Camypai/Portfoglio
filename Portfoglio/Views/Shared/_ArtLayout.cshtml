@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Portfoglio by Ilya Gorshkov</title>
-
+    <script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <environment include="Development">
         @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/css/uikit.min.css" /> *@
         <link rel="stylesheet" href="~/css/site.css"/>
@@ -19,18 +19,18 @@
     </environment>
 </head>
 <body>
-<div class="uk-section uk-section-muted uk-width-1-6@m uk-position-left  uk-flex uk-flex-middle uk-visible@l ">
-        
-    <div class=" uk-padding-small " uk-sticky>
+<div class="uk-section uk-section-default uk-width-1-6@m uk-position-left  uk-visible@l">
+
+    <div class=" uk-padding-small " uk-sticky="offset: 150;">
         <ul class="uk-nav uk-nav-primary uk-nav-center uk-text-right">
-            <li class="uk-active">
-                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: paint-bucket"></span> My works</a>
+            <li>
+                <a asp-controller="Art" asp-action="Index"><span class="uk-margin-small-right" uk-icon="icon: paint-bucket"></span> My works</a>
             </li>
             <li>
-                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: info"></span> About me</a>
+                <a asp-controller="Art" asp-action="About"><span class="uk-margin-small-right" uk-icon="icon: info"></span> About me</a>
             </li>
             <li>
-                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: list"></span> Pricelist</a>
+                <a asp-controller="Art" asp-action="Pricelist"><span class="uk-margin-small-right" uk-icon="icon: list"></span> Pricelist</a>
             </li>
             <li class="uk-nav-divider"></li>
             <li>
@@ -40,8 +40,15 @@
     </div>
 </div>
 <div>
-    @RenderBody()
+    <div class="art-main uk-section">
+        <div class="uk-container uk-container-small uk-position-relative">
+            @RenderBody()
+        </div>
+    </div>
 </div>
+<footer id="footer" class="uk-section uk-section-xsmall uk-background-muted">
+    <div class="uk-container uk-container-small">&copy; 2017 - @DateTime.Now.Year - Portfoglio by Ilya Gorshkov @ViewData["Footer"]</div>
+</footer>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/uikit.js"></script>
