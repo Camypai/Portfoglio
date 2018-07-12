@@ -10,7 +10,15 @@
                     <div class="uk-card-header">
                         <h3 class="uk-card-title">@album.Name</h3>
                     </div>
-                    <div class="uk-card-body">@album.Description</div>
+                    <div class="uk-card-body">
+                        @if (!album.State)
+                        {
+                            <div class="uk-card-badge uk-label">Hidden</div>
+                        }
+                        <p>
+                            @album.Description
+                        </p>
+                    </div>
                     <div class="uk-card-footer">
                         <a asp-controller="AdminArt" asp-action="ShowEditAlbum" asp-route-id="@album.Id" class="uk-button uk-button-text">Edit album</a>
                     </div>

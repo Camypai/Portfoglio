@@ -14,14 +14,15 @@
                 <input type="text" class="uk-input" asp-for="Description" placeholder="Description" value="@Model.Description"/>
             </div>
             <div class="uk-margin">
-                @if (Model.State)
-                {
-                    <label><input class="uk-checkbox" type="checkbox" asp-for="State" checked> Visible</label>
-                }
-                else
-                {
-                    <label><input class="uk-checkbox" type="checkbox" asp-for="State"> Visible</label>
-                }
+                <input id="hiddenCheckbox" type="hidden" asp-for="State" value="@Model.State"/>
+@*                 @if (Model.State) *@
+@*                 { *@
+                    <label><input id="checkbox" class="uk-checkbox" type="checkbox" @Model.State ? checked :> Visible</label>
+@*                 } *@
+@*                 else *@
+@*                 { *@
+@*                      <label><input class="uk-checkbox" type="checkbox" asp-for="State"> Visible</label> *@
+@*                 } *@
             </div>
         </form>
     </div>

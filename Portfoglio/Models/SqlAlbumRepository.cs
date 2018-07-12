@@ -29,7 +29,7 @@ namespace Portfoglio.Models
             await db.Albums.AddAsync(item);
         }
 
-        public async void Create(List<Album> items)
+        public async void Create(IEnumerable<Album> items)
         {
             foreach (var album in items)
             {

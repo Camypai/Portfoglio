@@ -28,7 +28,7 @@ namespace Portfoglio.Models
             await db.Pictures.AddAsync(item);
         }
 
-        public async void Create(List<Picture> items)
+        public async void Create(IEnumerable<Picture> items)
         {
             await db.Pictures.AddRangeAsync(items);
         }

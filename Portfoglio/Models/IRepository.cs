@@ -8,7 +8,7 @@ namespace Portfoglio.Models
         IEnumerable<T> GetList();
         Task<T> GetItem(int id);
         void Create(T item);
-        void Create(List<T> items);
+        void Create(IEnumerable<T> items);
         void Update(T item);
         void Hide(int id);
         void Hide(T item);

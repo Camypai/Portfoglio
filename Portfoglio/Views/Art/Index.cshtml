@@ -5,27 +5,26 @@
     ViewData["Footer"] = "| Pictures by Ksenia Kallagova";
 }
 
-<section class="uk-section uk-section-default uk-padding-remove-vertical" uk-height-viewport="expand:true">
-    <div uk-grid>
-        <div class="uk-width-1-3@m uk-background-muted uk-flex uk-flex-column">
-            <ul class="uk-nav uk-nav-primary uk-nav-center " uk-sticky>
-                <li class="uk-active">
-                    <a href="#"><span class="uk-margin-small-right" uk-icon="icon: paint-bucket"></span> My works</a>
-                </li>
-                <li>
-                    <a href="#"><span class="uk-margin-small-right" uk-icon="icon: info"></span> About me</a>
-                </li>
-                <li>
-                    <a href="#"><span class="uk-margin-small-right" uk-icon="icon: list"></span> Pricelist</a>
-                </li>
-                <li class="uk-nav-divider"></li>
-                <li>
-                    <a href="#"><span class="uk-margin-small-right" uk-icon="icon: receiver"></span> Contact with me</a>
-                </li>
-            </ul>
-        </div>
-        <div class="uk-width-expand" uk-grid>
-
+<div class="uk-offcanvas-content">
+    <div class="uk-width-1-6@m uk-position-left uk-flex uk-flex-middle uk-background-muted uk-padding-small">
+        <ul class="uk-nav uk-nav-primary uk-nav-center " uk-sticky>
+            <li class="uk-active">
+                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: paint-bucket"></span> My works</a>
+            </li>
+            <li>
+                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: info"></span> About me</a>
+            </li>
+            <li>
+                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: list"></span> Pricelist</a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li>
+                <a href="#"><span class="uk-margin-small-right" uk-icon="icon: receiver"></span> Contact with me</a>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-container uk-container-small uk-position-relative">
+        <div class="uk-child-width-expand@s uk-child-width-1-5@m uk-text-center" uk-grid>
             @if (Model.Any())
             {
                 foreach (var album in Model)
@@ -35,4 +34,4 @@
             }
         </div>
     </div>
-</section>
+</div>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,8 +12,8 @@ namespace Portfoglio.Controllers
     public class AdminArtController : Controller
     {
         private readonly IRepository<Album> dbAlbum;
-        private IRepository<Picture> dbPicture;
-        private IHostingEnvironment _environment;
+        private readonly IRepository<Picture> dbPicture;
+        private readonly IHostingEnvironment _environment;
 
         public AdminArtController(Context context, IHostingEnvironment environment)
         {
@@ -49,22 +48,24 @@ namespace Portfoglio.Controllers
         {
             var _album = await dbAlbum.GetItem(album.Id);
 
-//            var pictures = (from picture in album.Pictures
-//                let path = $"/images/{picture.FileName}"
-//                select new Picture
-//                {
-//                    Album = _album,
-//                    Name = picture.FileName,
-//                    State = true,
-//                    Path = path
-//                }).ToList();
-//
-//            _album.Pictures = pictures;
-//            _album.State = album.State == null ? false : true;
+            if (album.Pictures != null)
+            {
+                var _pictures = await SavePicturesOnServerAndBuild(album.Id, album.Pictures);
+                dbPicture.Create(_pictures);
+                await dbPicture.SaveAsync();
+            }
+
+            if(!Equals(_album.State, album.State))
+            _album.State = album.State;
+            
+            if(!Equals(_album.Description,album.Description))
             _album.Description = album.Description;
+            
+            if(!Equals(_album.Name,album.Name))
             _album.Name = album.Name;
 
             dbAlbum.Update(_album);
+            await dbAlbum.SaveAsync();
             return RedirectToAction("Index");
         }
 
@@ -74,8 +75,13 @@ namespace Portfoglio.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddPictures(int id, IFormFileCollection pictures)
+        /// <summary>
+        /// Save pictures on server, and write them on db
+        /// </summary>
+        /// <param name="id">Album id</param>
+        /// <param name="pictures">Pictures from web form</param>
+        /// <returns>IEnumerable<Picture></returns>
+        private async Task<IEnumerable<Picture>> SavePicturesOnServerAndBuild(int id, IFormFileCollection pictures)
         {
             var _album = await dbAlbum.GetItem(id);
 
@@ -90,18 +96,14 @@ namespace Portfoglio.Controllers
                     State = true,
                     Path = path
                 });
-                
+
                 using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
                 {
                     await picture.CopyToAsync(fileStream);
                 }
             }
-            
-//            _album.Pictures.AddRange(_pictures);
-            dbPicture.Create(_pictures);
-            await dbPicture.SaveAsync();
-            
-            return RedirectToAction("ShowEditAlbum", _album);
+
+            return _pictures;
         }
 
         public async Task<IActionResult> EditPicture(int id, Method method)
@@ -126,8 +128,8 @@ namespace Portfoglio.Controllers
             }
 
             await dbPicture.SaveAsync();
-            
-            return RedirectToAction("ShowEditAlbum", picture.Album);
+
+            return RedirectToAction("ShowEditAlbum", new { id = picture.Album.Id});
         }
     }
 }
