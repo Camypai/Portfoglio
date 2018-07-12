@@ -1,6 +1,6 @@
 ﻿@model Album
 
-<div class="uk-card uk-card-small uk-width-1-4@m" uk-scrollspy="cls:uk-animation-fade; repeat: true">
+<div class="uk-card uk-card-small uk-width-1-3" uk-scrollspy="cls:uk-animation-fade; repeat: true">
     <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1">
         <ul class="uk-slideshow-items" uk-lightbox>
             @foreach (var picture in Model.Pictures)
@@ -14,15 +14,3 @@
         </ul>
     </div>
 </div>
-
-@* <div class="uk-card  uk-width-1-4@m "> *@
-@*     <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: push; autoplay:true; ratio: 1:1"> *@
-@*         <ul class="uk-slideshow-items uk-overflow-hidden"> *@
-@*             <li> *@
-@*                 <div class="uk-position-cover uk-animation-reverse uk-transform-origin-center-right" uk-scrollspy="cls: uk-animation-kenburns; repeat: true"> *@
-@*                     <img src="~/images/5_1.jpg" alt="" uk-cover/> *@
-@*                 </div> *@
-@*             </li> *@
-@*         </ul> *@
-@*     </div> *@
-@* </div> *@
