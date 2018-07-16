@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -12,14 +12,12 @@ namespace Portfoglio.Controllers
 {
     public class AdminArtController : Controller
     {
-        private readonly IRepository<Album> dbAlbum;
-        private readonly IRepository<Picture> dbPicture;
+        private readonly SqlContext db;
         private readonly IHostingEnvironment _environment;
 
         public AdminArtController(Context context, IHostingEnvironment environment)
         {
-            dbAlbum = new SqlAlbumRepository(context);
-            dbPicture = new SqlPictureRepository(context);
+            db = new SqlContext(context);
             _environment = environment;
         }
 
@@ -93,20 +91,20 @@ namespace Portfoglio.Controllers
 
         public async Task<IActionResult> ShowEditAlbum(int id)
         {
-            var album = await dbAlbum.GetItem(id);
+            var album = await db.AlbumRepository.GetItem(id);
             return View(album);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditAlbum(AlbumViewModel album)
         {
-            var _album = await dbAlbum.GetItem(album.Id);
+            var _album = await db.AlbumRepository.GetItem(album.Id);
 
             if (album.Pictures != null)
             {
                 var _pictures = await SavePicturesOnServerAndBuild(album.Id, album.Pictures);
-                dbPicture.Create(_pictures);
-                await dbPicture.SaveAsync();
+                db.PictureRepository.Create(_pictures);
+                await db.PictureRepository.SaveAsync();
             }
 
             if(!Equals(_album.State, album.State))
@@ -118,14 +116,14 @@ namespace Portfoglio.Controllers
             if(!Equals(_album.Name,album.Name))
             _album.Name = album.Name;
 
-            dbAlbum.Update(_album);
-            await dbAlbum.SaveAsync();
+            db.AlbumRepository.Update(_album);
+            await db.AlbumRepository.SaveAsync();
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteAlbum(Album album)
         {
-            dbAlbum.Delete(album);
+            db.AlbumRepository.Delete(album);
             return RedirectToAction("Index");
         }
 
@@ -137,7 +135,7 @@ namespace Portfoglio.Controllers
         /// <returns>IEnumerable<Picture></returns>
         private async Task<IEnumerable<Picture>> SavePicturesOnServerAndBuild(int id, IFormFileCollection pictures)
         {
-            var _album = await dbAlbum.GetItem(id);
+            var _album = await db.AlbumRepository.GetItem(id);
 
             var _pictures = new List<Picture>();
             foreach (var picture in pictures)
@@ -162,26 +160,26 @@ namespace Portfoglio.Controllers
 
         public async Task<IActionResult> EditPicture(int id, Method method)
         {
-            var picture = await dbPicture.GetItem(id);
+            var picture = await db.PictureRepository.GetItem(id);
 
             switch (method)
             {
                 case Method.Edit:
                     break;
                 case Method.Hide:
-                    dbPicture.Hide(picture);
+                    db.PictureRepository.Hide(picture);
                     break;
                 case Method.Delete:
-                    dbPicture.Delete(picture);
+                    db.PictureRepository.Delete(picture);
                     break;
                 case Method.Show:
-                    dbPicture.Show(picture);
+                    db.PictureRepository.Show(picture);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(method), method, null);
             }
 
-            await dbPicture.SaveAsync();
+            await db.PictureRepository.SaveAsync();
 
             return RedirectToAction("ShowEditAlbum", new { id = picture.Album.Id});
         }

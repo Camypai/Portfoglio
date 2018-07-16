@@ -10,19 +10,16 @@ namespace Portfoglio.Controllers
 {
     public class ArtController : Controller
     {
-        private IRepository<Album> albumFromDB;
-        private IRepository<Picture> pictureFromDB;
+        private readonly SqlContext db;
 
         public ArtController(Context context)
         {
-            albumFromDB = new SqlAlbumRepository(context);
-            pictureFromDB = new SqlPictureRepository(context);
+            db = new SqlContext(context);
         }
         
         public IActionResult Index()
         {
-            var albums = albumFromDB.GetList().Where(a => a.State);
-//            var pictures = pictureFromDB.GetList().Where(p => p.State);
+            var albums = db.AlbumRepository.GetList().Where(a => a.State);
             albums = albums.Select(a => new Album
             {
                 Id = a.Id,
@@ -50,11 +47,6 @@ namespace Portfoglio.Controllers
 //            ViewData["Message"] = "Your contact page.";
 //
 //            return View();
-//        }
-//
-//        public IActionResult Error()
-//        {
-//            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
 //        }
     }
 }
