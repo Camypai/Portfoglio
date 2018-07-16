@@ -1,0 +1,26 @@
+﻿@model Portfoglio.ViewModel.LoginModel
+
+@{
+    ViewBag.Title = "Authenticate";
+    Layout = "_Layout";
+}
+
+<div class="uk-container uk-container-small">
+    <form asp-controller="Account" asp-action="Login" asp-antiforgery="true">
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">Authentication</legend>
+            
+            <div class="uk-margin">
+                <input class="uk-input" type="text" placeholder="Login" name="Name"/>
+            </div>
+            
+            <div class="uk-margin">
+                <input class="uk-input" type="password" placeholder="Password" name="Password"/>
+            </div>
+            
+            <div class="uk-margin">
+                <input class="uk-button uk-button-primary" type="submit"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

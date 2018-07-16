@@ -1,8 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +13,7 @@ using Portfoglio.Models;
 
 namespace Portfoglio.Controllers
 {
+//    [Authorize]
     public class AdminArtController : Controller
     {
         private readonly SqlContext db;
