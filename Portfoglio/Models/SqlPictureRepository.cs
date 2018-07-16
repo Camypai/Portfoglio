@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Portfoglio.Models
 {
-    public class SqlPictureRepository : IRepository<Picture>
+    public class SqlPictureRepository : IRepositoryAdvanced<Picture>
     {
         private readonly Context db;
 
@@ -25,12 +25,15 @@ namespace Portfoglio.Models
 
         public async void Create(Picture item)
         {
-            await db.Pictures.AddAsync(item);
+            var result = await db.Pictures.AddAsync(item);
+//            return result.Entity;
+//            db.Entry(item).State = EntityState.Added;
         }
 
         public async void Create(IEnumerable<Picture> items)
         {
             await db.Pictures.AddRangeAsync(items);
+//            db.Entry(items).State = EntityState.Added;
         }
 
         public void Update(Picture item)
@@ -73,6 +76,7 @@ namespace Portfoglio.Models
         public void Delete(Picture item)
         {
             if (item != null)
+//                db.Entry(item).State = EntityState.Deleted;
                 db.Pictures.Remove(item);
         }
 

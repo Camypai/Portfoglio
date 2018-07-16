@@ -17,5 +17,7 @@ namespace Portfoglio.Models
                 Database.Migrate();
             }
         }
+        
+        
     }
 }

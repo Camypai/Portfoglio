@@ -1,6 +1,6 @@
 ﻿namespace Portfoglio.Models
 {
-    public abstract class BaseModel
+    public class BaseModel : IBaseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

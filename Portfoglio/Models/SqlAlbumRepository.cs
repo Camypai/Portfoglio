@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Portfoglio.Models
 {
-    public class SqlAlbumRepository : IRepository<Album>
+    public class SqlAlbumRepository : IRepositoryAdvanced<Album>
     {
         private readonly Context db;
 
@@ -26,7 +26,9 @@ namespace Portfoglio.Models
         public async void Create(Album item)
         {
             item.State = true;
-            await db.Albums.AddAsync(item);
+            var result = await db.Albums.AddAsync((Album)item);
+//            db.Entry(item).State = EntityState.Added;
+//            return result.Entity;
         }
 
         public async void Create(IEnumerable<Album> items)
@@ -36,6 +38,7 @@ namespace Portfoglio.Models
                 album.State = true;
             }
             await db.Albums.AddRangeAsync(items);
+//            db.Entry(items).State = EntityState.Added;
         }
 
         public void Update(Album item)
@@ -46,13 +49,13 @@ namespace Portfoglio.Models
         public void Hide(int id)
         {
             var item = db.Albums.Find(id);
-            item.State = !item.State;
+            item.State = false;
             Update(item);
         }
 
         public void Hide(Album item)
         {
-            item.State = !item.State;
+            item.State = false;
             Update(item);
         }
 
@@ -78,7 +81,8 @@ namespace Portfoglio.Models
         public void Delete(Album item)
         {
             if (item != null)
-                db.Albums.Remove(item);
+//                db.Entry(item).State = EntityState.Deleted;
+                db.Albums.Remove((Album)item);
         }
 
         public void Save()

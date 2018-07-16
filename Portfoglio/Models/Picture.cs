@@ -1,6 +1,6 @@
 ﻿namespace Portfoglio.Models
 {
-    public class Picture : BaseModel
+    public class Picture : BaseModel, IPicture
     {
         public string Path { get; set; }
         public int  Sorted { get; set; }
