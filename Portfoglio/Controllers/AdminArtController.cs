@@ -21,7 +21,6 @@ namespace Portfoglio.Controllers
             _environment = environment;
         }
 
-        // GET
         public IActionResult Index()
         {
             return View();
@@ -82,10 +81,19 @@ namespace Portfoglio.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateAlbum(Album album)
+        public async Task<IActionResult> CreateAlbum(AlbumViewModel album)
         {
-            dbAlbum.Create(album);
-            await dbAlbum.SaveAsync();
+            
+            db.AlbumRepository.Create(album.ToAlbum());
+            await db.AlbumRepository.SaveAsync();
+            var _album = db.AlbumRepository
+                .GetList()
+                .FirstOrDefault(a => a.Name == album.Name & a.Description == album.Description & !a.Pictures.Any());
+
+            if (!(album.Pictures != null & _album != null)) return RedirectToAction("Index");
+            var _pictures = await SavePicturesOnServerAndBuild(_album.Id, album.Pictures);
+            db.PictureRepository.Create(_pictures);
+            await db.PictureRepository.SaveAsync();
             return RedirectToAction("Index");
         }
 
@@ -132,7 +140,7 @@ namespace Portfoglio.Controllers
         /// </summary>
         /// <param name="id">Album id</param>
         /// <param name="pictures">Pictures from web form</param>
-        /// <returns>IEnumerable<Picture></returns>
+        /// <returns>IEnumerable IPicture</returns>
         private async Task<IEnumerable<Picture>> SavePicturesOnServerAndBuild(int id, IFormFileCollection pictures)
         {
             var _album = await db.AlbumRepository.GetItem(id);

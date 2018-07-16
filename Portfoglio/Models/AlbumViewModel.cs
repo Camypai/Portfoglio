@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Portfoglio.Models
 {
@@ -6,5 +7,16 @@ namespace Portfoglio.Models
     {
         public string Description { get; set; }
         public IFormFileCollection Pictures { get; set; }
+
+        public Album ToAlbum()
+        {
+            return new Album
+            {
+                Id = Id,
+                Name = Name,
+                Description = Description,
+                State = State
+            };
+        }
     }
 }
