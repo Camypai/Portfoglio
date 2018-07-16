@@ -1,4 +1,4 @@
-﻿@model Album
+@model IAlbum
 @{
     ViewBag.Title = "Administration panel";
     Layout = "_Layout";
@@ -35,8 +35,7 @@
                     <div class="uk-card uk-card-default uk-card-hover">
                         @if (!picture.State)
                         {
-                            
-                        <div class="uk-card-badge uk-label">Hidden</div>
+                            <div class="uk-card-badge uk-label">Hidden</div>
                         }
                         <div class="uk-card-media-top">
                             <img src="@picture.Path" alt="@picture.Name"/>
@@ -45,14 +44,19 @@
                             <ul class="uk-iconnav">
                                 @if (picture.State)
                                 {
-                                    
-                                    <li><a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Hide" uk-tooltip="title: Hide; delay: 500" class="uk-icon uk-icon-image" style="background-image: url(/lib/glyphicon/glyphicons-52-eye-open.png);"></a></li>
+                                    <li>
+                                        <a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Hide" uk-tooltip="title: Hide; delay: 500" class="uk-icon uk-icon-image" style="background-image: url(/lib/glyphicon/glyphicons-52-eye-open.png);"></a>
+                                    </li>
                                 }
                                 else
                                 {
-                                    <li><a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Show" uk-tooltip="title: Show; delay: 500" class="uk-icon uk-icon-image" style="background-image: url(/lib/glyphicon/glyphicons-53-eye-close.png);"></a></li>
+                                    <li>
+                                        <a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Show" uk-tooltip="title: Show; delay: 500" class="uk-icon uk-icon-image" style="background-image: url(/lib/glyphicon/glyphicons-53-eye-close.png);"></a>
+                                    </li>
                                 }
-                                <li><a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Delete" uk-icon="icon: trash" uk-tooltip="title: Delete; delay: 500"></a></li>
+                                <li>
+                                    <a asp-action="EditPicture" asp-route-id="@picture.Id" asp-route-method="Delete" uk-icon="icon: trash" uk-tooltip="title: Delete; delay: 500"></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -62,14 +66,10 @@
     </div>
     <div class="uk-margin">
         <div class="uk-text-left">
-            @* <form asp-action="AddPictures" asp-controller="AdminArt" method="post" enctype="multipart/form-data"> *@
-                @* <input type="hidden" name="id" value="@Model.Id"/> *@
-                <div uk-form-custom="target: true">
-                    <input type="file" name="Pictures" multiple>
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Select pictures</button>
-                </div>
-                @* <input class="uk-button uk-button-primary" type="submit" value="Upload"/> *@
-            @* </form> *@
+            <div uk-form-custom="target: true">
+                <input type="file" name="Pictures" multiple>
+                <button class="uk-button uk-button-default" type="button" tabindex="-1">Select pictures</button>
+            </div>
         </div>
         <div class="uk-text-right">
             <a asp-action="DeleteAlbum" asp-controller="AdminArt" class="uk-button uk-button-default">Delete</a>
