@@ -9,7 +9,7 @@
     <div class="uk-modal-body" uk-grid>
         @* Form *@
         <div>
-            <form id="CreateAlbum" asp-action="CreateAlbum" asp-controller="AdminArt">
+            <form id="CreateAlbum" asp-action="CreateAlbum" asp-controller="AdminArt" enctype="multipart/form-data">
                 <div class="uk-margin">
                     <input type="text" class="uk-input" asp-for="Name" placeholder="Name"/>
                 </div>
@@ -20,6 +20,14 @@
     
                 <div class="uk-margin">
                     <input type="hidden" class="uk-input" asp-for="State" value="true"/>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-text-left">
+                        <div uk-form-custom="target: true">
+                            <input type="file" name="Pictures" multiple>
+                            <button class="uk-button uk-button-default" type="button" tabindex="-1">Select pictures</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
