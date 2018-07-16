@@ -1,4 +1,4 @@
-@model IAlbum
+﻿@model IAlbum
 @{
     ViewBag.Title = "Administration panel";
     Layout = "_Layout";
@@ -15,14 +15,14 @@
             </div>
             <div class="uk-margin">
                 <input id="hiddenCheckbox" type="hidden" asp-for="State" value="@Model.State"/>
-@*                 @if (Model.State) *@
-@*                 { *@
-                    <label><input id="checkbox" class="uk-checkbox" type="checkbox" @Model.State ? checked :> Visible</label>
-@*                 } *@
-@*                 else *@
-@*                 { *@
-@*                      <label><input class="uk-checkbox" type="checkbox" asp-for="State"> Visible</label> *@
-@*                 } *@
+                @*                 @if (Model.State) *@
+                @*                 { *@
+                <label><input id="checkbox" class="uk-checkbox" type="checkbox" @Model.State ? checked :> Visible</label>
+                @*                 } *@
+                @*                 else *@
+                @*                 { *@
+                @*                      <label><input class="uk-checkbox" type="checkbox" asp-for="State"> Visible</label> *@
+                @*                 } *@
             </div>
         </form>
     </div>
