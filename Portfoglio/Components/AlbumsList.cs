@@ -7,16 +7,16 @@ namespace Portfoglio.Components
 {
     public class AlbumsList : ViewComponent
     {
-        private readonly SqlAlbumRepository dbAlbumRepository;
+        private readonly SqlContext db;
 
         public AlbumsList(Context context)
         {
-            dbAlbumRepository = new SqlAlbumRepository(context);
+            db = new SqlContext(context);
         }
 
         public IViewComponentResult Invoke()
         {
-            return View(dbAlbumRepository.GetList());
+            return View(db.AlbumRepository.GetList());
         }
     }
 }
