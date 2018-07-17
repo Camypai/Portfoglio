@@ -4,7 +4,7 @@
     {
         public readonly IRepositoryAdvanced<Album> AlbumRepository;
         public readonly IRepositoryAdvanced<Picture> PictureRepository;
-        public readonly IRepositoryAuth AuthRepository;
+        public readonly IRepository<User> AuthRepository;
 
         public SqlContext(Context context)
         {

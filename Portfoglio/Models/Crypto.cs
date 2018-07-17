@@ -22,7 +22,7 @@ namespace Portfoglio.Models
             var bytes = Encoding.Unicode.GetBytes(s);
 
             //создаем объект для получения средст шифрования  
-            var CSP =
+            var CSP = 
                 new MD5CryptoServiceProvider();
 
             //вычисляем хеш-представление в байтах  

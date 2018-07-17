@@ -1,24 +1,31 @@
-﻿@model Portfoglio.ViewModel.LoginModel
+﻿@model Portfoglio.ViewModel.RegistrationModel
 
 @{
-    ViewBag.Title = "Authenticate";
+    ViewBag.Title = "Registration";
     Layout = "_ArtLayout";
 }
 
 <div class="uk-container uk-container-small">
-    <form asp-controller="Account" asp-action="Login" asp-antiforgery="true">
+    <form asp-controller="Account" asp-action="Registration" asp-antiforgery="true">
         <fieldset class="uk-fieldset">
-            <legend class="uk-legend">Authentication</legend>
+            <legend class="uk-legend">Registration</legend>
             <div asp-validation-summary="ModelOnly"></div>
-
+            <div class="uk-margin">
+                <input class="uk-input" type="email" placeholder="Email" asp-for="Email"/>
+            </div>
+            
             <div class="uk-margin">
                 <input class="uk-input" type="text" placeholder="Login" asp-for="Name"/>
             </div>
-
+            
             <div class="uk-margin">
                 <input class="uk-input" type="password" placeholder="Password" asp-for="Password"/>
             </div>
-
+            
+            <div class="uk-margin">
+                <input class="uk-input" type="password" placeholder="Password" asp-for="ConfirmPassword"/>
+            </div>
+            
             <div class="uk-margin">
                 <input class="uk-button uk-button-primary" type="submit"/>
             </div>

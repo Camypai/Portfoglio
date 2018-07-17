@@ -13,7 +13,7 @@ using Portfoglio.Models;
 
 namespace Portfoglio.Controllers
 {
-//    [Authorize]
+    [Authorize]
     public class AdminArtController : Controller
     {
         private readonly SqlContext db;

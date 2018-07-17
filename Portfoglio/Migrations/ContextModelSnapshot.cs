@@ -64,13 +64,13 @@ namespace Portfoglio.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
-
                     b.Property<string>("Name");
 
                     b.Property<string>("Password");
 
                     b.Property<bool>("State");
+
+                    b.Property<string>("UserEmail");
 
                     b.HasKey("Id");
 

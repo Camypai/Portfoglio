@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Rest;
 using Portfoglio.Models;
 using Portfoglio.ViewModel;
 
@@ -29,11 +31,10 @@ namespace Portfoglio.Controllers
         public async Task<IActionResult> Login(LoginModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            var user = await db.AuthRepository.GetUser(new User
-            {
-                Password = Crypto.GetHashString(model.Password),
-                Name = model.Name
-            });
+            var user = db.AuthRepository.GetList()
+                ?.FirstOrDefault(u=>u.Password == Crypto.GetHashString(model.Password)
+                & u.Name == model.Name
+            );
 
             if (user == null)
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -43,6 +44,45 @@ namespace Portfoglio.Controllers
 
                 return RedirectToAction("Index", "AdminArt");
             }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Registration()
+        {
+            if (db.AuthRepository.GetList().Any())
+            {
+                return Forbid();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Registration(RegistrationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (db.AuthRepository.GetList().Any())
+                {
+                    return Forbid();
+                }
+                
+                db.AuthRepository.Create(new User
+                {
+                    Name = model.Name,
+                    Password = Crypto.GetHashString(model.Password),
+                    UserEmail =  model.Email
+                });
+
+                await db.AuthRepository.SaveAsync();
+
+                await Authenticate(model.Name);
+
+            return RedirectToAction("Index", "AdminArt");
+            }
+            ModelState.AddModelError("", "Not available login/password or email");
 
             return View(model);
         }

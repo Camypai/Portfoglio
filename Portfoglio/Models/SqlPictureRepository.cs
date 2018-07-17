@@ -26,14 +26,11 @@ namespace Portfoglio.Models
         public async void Create(Picture item)
         {
             var result = await db.Pictures.AddAsync(item);
-//            return result.Entity;
-//            db.Entry(item).State = EntityState.Added;
         }
 
         public async void Create(IEnumerable<Picture> items)
         {
             await db.Pictures.AddRangeAsync(items);
-//            db.Entry(items).State = EntityState.Added;
         }
 
         public void Update(Picture item)
