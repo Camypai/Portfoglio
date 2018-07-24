@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Portfoglio.Models;
+using Portfoglio.ViewModel;
 
 namespace Portfoglio.Controllers
 {
@@ -16,7 +17,7 @@ namespace Portfoglio.Controllers
         {
             db = new SqlContext(context);
         }
-        
+
         public IActionResult Index()
         {
             var albums = db.AlbumRepository.GetList().Where(a => a.State);
@@ -25,10 +26,10 @@ namespace Portfoglio.Controllers
                 Id = a.Id,
                 Description = a.Description,
                 Name = a.Name,
-                Pictures = a.Pictures.Where(p=>p.AlbumId ==  a.Id & p.State).ToList(),
+                Pictures = a.Pictures.Where(p => p.AlbumId == a.Id & p.State).ToList(),
                 State = a.State
             });
-            
+
             return View(albums);
         }
 
@@ -36,11 +37,22 @@ namespace Portfoglio.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Pricelist()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendMessage(MessageModel model)
+        {
+            if (!ModelState.IsValid) return PartialView("_SendMessage", model);
+            ISendService service = new EmailSendService();
+            await service.SendAsync(model);
+            return RedirectToAction("Index");
+        }
+
 //
 //        public IActionResult Contact()
 //        {
