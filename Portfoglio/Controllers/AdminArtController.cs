@@ -32,9 +32,10 @@ namespace Portfoglio.Controllers
         
         public IActionResult About()
         {
-            const string path = @"./Views/Art/_About.cshtml";
+            const string path = "./Views/Art/_About.cshtml";
             var result = GetTextFromFile(path);
-            
+
+
             return View(result);
         }
         

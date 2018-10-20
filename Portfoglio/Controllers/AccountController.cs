@@ -73,7 +73,7 @@ namespace Portfoglio.Controllers
                 {
                     Name = model.Name,
                     Password = Crypto.GetHashString(model.Password),
-                    UserEmail =  model.Email
+                    Email =  model.Email
                 });
 
                 await db.AuthRepository.SaveAsync();
